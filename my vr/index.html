@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script
+    src="https1://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+  <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+  <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
+  <script src="./shoot.js"></script>
+  <script src="./playerMovement.js"></script>
+</head>
+
+<body>
+  <a-scene id="scene" inspector-plugin-recast>
+
+    
+
+    <!-------------------------------------------Asset Management------------------------------------------->
+    <a-assets timeout="10000">
+
+      <a-asset-item id="maze" src="models/bg/Project Name.gltf"></a-asset-item>
+      <a-assets-item id="player" src="models/player/scene.gltf"></a-assets-item>
+
+    
+    </a-assets>
+
+    <a-entity id="camera-rig" movement-controls="speed: 0.2; constrainToNavMesh: true" position="-1.459 0.632 -8.925">
+      <a-entity id="camera" camera position="-0 0 -0"
+      look-controls="pointerLockEnabled: false">
+        <a-entity id="contron-player" gltf-model="#player" position="0 0 0" rotation="0 180 0"
+          scale="1 1 1">
+        </a-entity>
+        <a-cursor></a-cursor>
+      </a-entity>
+    </a-entity>
+    
+
+    <a-entity light="type: ambient; intensity: 0.5;">
+    </a-entity>
+
+
+    <!--Directional-->
+    <a-entity animation="property: rotation; to: 0 360 0;easing:linear; loop: true; dur: 60000">
+
+      <a-entity light="type: directional; castShadow: true; intensity: 1; distance: 50; decay: 2; color:yellow"
+        position="-100 18 20"></a-entity>
+
+    </a-entity>
+
+  
+   
+    <a-entity>
+      <!--a-entity position="0 8 -15"  rotation="0 0 0" scale="100 100 100" gltf-model="#maze" shadow="cast: true;">
+      </a-entity-->
+      <a-entity id="mazesetup" gltf-model="#maze" position="0 0 -10" rotation="0 90 0" scale="20 20 20"  nav-mesh>
+      
+      </a-entity>
+
+
+    </a-entity>
+
+    
+    
+
+  
+
+    
+
+  </a-scene>
+</body>
